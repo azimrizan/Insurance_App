@@ -1,0 +1,110 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        My Policies
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/dashboard" class="btn btn-outline">
+          <i class="fas fa-tachometer-alt"></i>
+          Dashboard
+        </a>
+        <button (click)="authService.logout()" class="btn btn-error">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-user-shield"></i>
+        My Policies
+      </h2>
+      <p>View and manage your purchased insurance policies.</p>
+    </header>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="error" class="alert error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Policies List -->
+    <div *ngIf="!loading" class="policies-section">
+      <!-- Empty State -->
+      <div *ngIf="policies.length === 0" class="card empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-inbox"></i>
+        </div>
+        <h3>No policies purchased</h3>
+        <p>You haven't purchased any insurance policies yet. Browse our available policies to get started.</p>
+        <a routerLink="/policies" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+          Browse Policies
+        </a>
+      </div>
+
+      <!-- Policies Grid -->
+      <div *ngIf="policies.length > 0" class="policies-grid">
+        <div *ngFor="let up of policies" class="card policy-card">
+          <div class="policy-header">
+            <div class="policy-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="policy-info">
+              <h3>{{ up.policyProductId.title }}</h3>
+              <p class="policy-code">Policy ID: {{ up._id.slice(-8) }}</p>
+            </div>
+            <div class="policy-status">
+              <span class="badge" [ngClass]="getStatusClass(up.status)">
+                {{ up.status }}
+              </span>
+            </div>
+          </div>
+
+          <div class="policy-details">
+            <div class="detail-item">
+              <span class="detail-label">Start Date:</span>
+              <span class="detail-value">{{ up.startDate | date:'MMM dd, yyyy' }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">End Date:</span>
+              <span class="detail-value">{{ up.endDate | date:'MMM dd, yyyy' }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Premium:</span>
+              <span class="detail-value">${{ up.policyProductId.premium }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Term:</span>
+              <span class="detail-value">{{ up.policyProductId.termMonths }} months</span>
+            </div>
+          </div>
+
+          <div class="policy-actions">
+            <button *ngIf="up.status === 'ACTIVE'" class="btn btn-error" (click)="cancel(up._id)">
+              <i class="fas fa-times"></i>
+              Cancel Policy
+            </button>
+            <button *ngIf="up.status !== 'ACTIVE'" class="btn btn-outline" disabled>
+              <i class="fas fa-ban"></i>
+              Policy {{ up.status }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

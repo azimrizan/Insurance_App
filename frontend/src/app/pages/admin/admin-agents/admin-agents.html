@@ -1,0 +1,102 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Admin • Agents
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/admin" class="btn btn-outline">
+          <i class="fas fa-arrow-left"></i>
+          Back to Admin
+        </a>
+        <button (click)="authService.logout()" class="btn btn-error">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-users"></i>
+        Agent Management
+      </h2>
+      <p>Create new agents and assign users to existing agents.</p>
+    </header>
+
+    <!-- Create Agent Card -->
+    <div class="card form-card">
+      <h3>
+        <i class="fas fa-user-plus"></i>
+        Create New Agent
+      </h3>
+      <form class="form-grid" (ngSubmit)="createAgent(f)" #f="ngForm">
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input class="form-input" name="name" ngModel placeholder="Enter agent name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" name="email" ngModel placeholder="Enter email address" type="email" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" name="password" ngModel placeholder="Enter password" type="password" required />
+        </div>
+        <div class="full">
+          <button class="btn btn-primary" type="submit">
+            <i class="fas fa-user-plus"></i>
+            Create Agent
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Agents List -->
+    <div class="agents-section">
+      <div *ngIf="agents.length === 0" class="card empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>No agents created</h3>
+        <p>You haven't created any agents yet. Use the form above to create your first agent.</p>
+      </div>
+
+      <div *ngIf="agents.length > 0" class="agents-grid">
+        <div *ngFor="let a of agents" class="card agent-card">
+          <div class="agent-header">
+            <div class="agent-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="agent-info">
+              <h3>{{ a.name }}</h3>
+              <p class="agent-email">{{ a.email }}</p>
+              <span class="agent-role">{{ a.role }}</span>
+            </div>
+          </div>
+
+          <!-- Assign User Form -->
+          <form class="assign-form" (ngSubmit)="assign(a._id, userId.value)">
+            <div class="form-group">
+              <label class="form-label">Assign Customer</label>
+              <select class="form-select" #userId required>
+                <option value="" disabled selected>Select customer</option>
+                <option *ngFor="let u of users" [value]="u._id">{{ u.name }} — {{ u.email }}</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-user-plus"></i>
+              Assign User
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

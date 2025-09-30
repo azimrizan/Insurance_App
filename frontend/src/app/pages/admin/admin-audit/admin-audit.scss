@@ -1,0 +1,154 @@
+/* ================== Admin Audit Page Specific Styles ================== */
+
+.audit-section {
+  margin-top: 3rem;
+
+  .audit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .audit-card {
+    padding: 2rem;
+    background: #3B59B6;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+
+    .audit-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .audit-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #3B59B6, #2d4a9a);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(59, 89, 182, 0.3);
+        flex-shrink: 0;
+
+        i {
+          font-size: 1.5rem;
+          color: #fff;
+          font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+          font-weight: 900;
+        }
+      }
+
+      .audit-info {
+        flex: 1;
+
+        h3 {
+          color: #fff;
+          font-size: 1.3rem;
+          font-weight: 700;
+          margin: 0 0 0.5rem 0;
+        }
+
+        .audit-user {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.9rem;
+          margin: 0;
+        }
+      }
+
+      .audit-timestamp {
+        .timestamp {
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.8rem;
+          font-weight: 500;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 0.25rem 0.75rem;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #3B59B6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: #fff;
+
+  .empty-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+
+    i {
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+      font-weight: 900;
+    }
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+/* ================== Responsive Design ================== */
+@media (max-width: 768px) {
+  .audit-section {
+    .audit-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .audit-card {
+      padding: 1.5rem;
+
+      .audit-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+
+        .audit-icon {
+          margin: 0 auto;
+        }
+
+        .audit-timestamp {
+          .timestamp {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .audit-section {
+    .audit-card {
+      padding: 1rem;
+    }
+  }
+}

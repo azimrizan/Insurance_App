@@ -1,0 +1,151 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Insurance Claims
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/dashboard" class="btn btn-outline">
+          <i class="fas fa-tachometer-alt"></i>
+          Dashboard
+        </a>
+        <button (click)="authService.logout()" class="btn btn-error">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-clipboard-check"></i>
+        Insurance Claims
+      </h2>
+      <p>Submit new claims and track the status of your existing insurance claims.</p>
+    </header>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="alert error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Submit New Claim -->
+    <div class="card form-card">
+      <h3>
+        <i class="fas fa-plus-circle"></i>
+        Submit New Claim
+      </h3>
+      <form [formGroup]="submitForm" (ngSubmit)="submitClaim()" class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Policy</label>
+          <select class="form-select" formControlName="policyId">
+            <option value="" disabled selected>Select policy</option>
+            <option *ngFor="let p of policies" [value]="p._id">
+              {{ p.policyProductId.title || p._id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Incident Date</label>
+          <input class="form-input" type="date" formControlName="incidentDate" />
+        </div>
+
+        <div class="form-group full">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" placeholder="Describe the incident" formControlName="description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Amount ($)</label>
+          <input class="form-input" type="number" min="1" placeholder="Enter claim amount" formControlName="amount" />
+        </div>
+
+        <div class="full">
+          <button class="btn btn-primary" type="submit" [disabled]="submitForm.invalid">
+            <i class="fas fa-paper-plane"></i>
+            Submit Claim
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Claims List -->
+    <div *ngIf="!loading && !error" class="claims-section">
+      <div *ngIf="claims.length === 0" class="card empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-inbox"></i>
+        </div>
+        <h3>No claims submitted</h3>
+        <p>You haven't submitted any claims yet. Use the form above to submit your first claim.</p>
+      </div>
+
+      <div *ngIf="claims.length > 0" class="claims-grid">
+        <div *ngFor="let claim of claims" class="card claim-card">
+          <div class="claim-header">
+            <div class="claim-icon">
+              <i class="fas fa-file-invoice"></i>
+            </div>
+            <div class="claim-info">
+              <h3>Claim #{{ claim._id.slice(-8) }}</h3>
+              <p class="claim-date">Submitted: {{ formatDate(claim.createdAt) }}</p>
+            </div>
+            <div class="claim-status">
+              <span class="badge" [ngClass]="statusClass(claim.status)">
+                {{ claim.status }}
+              </span>
+            </div>
+          </div>
+
+          <div class="claim-details">
+            <div class="detail-item">
+              <span class="detail-label">Description:</span>
+              <span class="detail-value">{{ claim.description }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Amount:</span>
+              <span class="detail-value">${{ claim.amountClaimed }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Incident Date:</span>
+              <span class="detail-value">{{ formatDate(claim.incidentDate) }}</span>
+            </div>
+          </div>
+
+          <!-- Decision Notes -->
+          <div *ngIf="claim.decisionNotes" class="decision-notes">
+            <h4>
+              <i class="fas fa-sticky-note"></i>
+              Decision Notes
+            </h4>
+            <p>{{ claim.decisionNotes }}</p>
+          </div>
+
+          <!-- Admin/Agent Actions -->
+          <div *ngIf="authService.getCurrentUserValue()?.role === 'admin' || authService.getCurrentUserValue()?.role === 'agent'" class="claim-actions">
+            <button class="btn btn-success" (click)="updateStatus(claim._id, 'APPROVED')">
+              <i class="fas fa-check"></i>
+              Approve
+            </button>
+            <button class="btn btn-error" (click)="updateStatus(claim._id, 'REJECTED')">
+              <i class="fas fa-times"></i>
+              Reject
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

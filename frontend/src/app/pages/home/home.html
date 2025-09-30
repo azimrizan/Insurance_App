@@ -1,0 +1,703 @@
+<div class="page">
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        SecureGuard Insurance
+      </h1>
+      <div class="nav-actions">
+          <ng-container *ngIf="currentUser$ | async as user; else notLoggedIn">
+          <span class="welcome">
+            <i class="fas fa-user-circle"></i>
+            Welcome, {{ user.name }}
+          </span>
+          <a routerLink="/dashboard" class="btn btn-primary">
+            <i class="fas fa-tachometer-alt"></i>
+              Dashboard
+            </a>
+          </ng-container>
+          <ng-template #notLoggedIn>
+          <a routerLink="/login" class="btn btn-outline">
+            <i class="fas fa-sign-in-alt"></i>
+              Sign In
+            </a>
+          <a routerLink="/register" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i>
+              Get Started
+            </a>
+          </ng-template>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+  <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="section-header">
+          <h1>
+            <i class="fas fa-shield-alt"></i>
+            Your Trusted Insurance Partner
+            </h1>
+          <p>Join over <strong>50,000+ satisfied customers</strong> who trust SecureGuard Insurance for comprehensive coverage, fast claims processing, and exceptional customer service. Experience the future of insurance management.</p>
+              </div>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">50,000+</div>
+            <div class="stat-label">Happy Customers</div>
+              </div>
+          <div class="stat-item">
+            <div class="stat-number">99.8%</div>
+            <div class="stat-label">Claims Approval</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Customer Support</div>
+          </div>
+        </div>
+        
+        <div class="hero-actions">
+          <a routerLink="/register" class="btn btn-primary btn-lg">
+            <i class="fas fa-rocket"></i>
+            Get Your Quote Now
+          </a>
+          <a routerLink="/policies" class="btn btn-outline btn-lg">
+            <i class="fas fa-search"></i>
+            Browse Policies
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-visual">
+        <div class="hero-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="hero-text">
+          <h3>25+ Years of Excellence</h3>
+          <p>Industry-leading insurance solutions</p>
+    </div>
+  </div>
+    </section>
+
+    <!-- Trust & Expertise Section -->
+    <section class="trust-section">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-award"></i>
+          Why Choose SecureGuard Insurance?
+        </h2>
+        <p>With over 25 years of experience and industry-leading expertise, we provide unmatched insurance solutions.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="card trust-card">
+          <div class="trust-icon">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3>Industry Leader</h3>
+          <p>25+ years of proven excellence in insurance services with A+ rating from major credit agencies.</p>
+        </div>
+
+        <div class="card trust-card">
+          <div class="trust-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>50,000+ Customers</h3>
+          <p>Join thousands of satisfied customers who trust us with their most important insurance needs.</p>
+        </div>
+
+        <div class="card trust-card">
+          <div class="trust-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Round-the-clock customer support with dedicated agents ready to assist you anytime, anywhere.</p>
+        </div>
+
+        <div class="card trust-card">
+          <div class="trust-icon">
+            <i class="fas fa-shield-check"></i>
+          </div>
+          <h3>99.8% Claims Approval</h3>
+          <p>Industry-leading claims approval rate with fast processing and fair settlements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Policies Section -->
+    <section class="policies-section">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-star"></i>
+          Featured Insurance Policies
+        </h2>
+        <p>Discover our most popular insurance products designed to protect what matters most to you.</p>
+      </div>
+
+      <div class="policies-grid">
+        <div class="card policy-card featured">
+          <div class="policy-badge">Most Popular</div>
+          <div class="policy-icon">
+            <i class="fas fa-car"></i>
+          </div>
+          <div class="policy-content">
+            <h3>Auto Insurance</h3>
+            <p class="policy-description">Comprehensive coverage for your vehicle with competitive rates and excellent customer service.</p>
+            <div class="policy-features">
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Collision Coverage</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Liability Protection</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Roadside Assistance</span>
+              </div>
+            </div>
+            <div class="policy-price">
+              <span class="price">Starting at $89/month</span>
+            </div>
+            <a routerLink="/policies" class="btn btn-primary">
+              <i class="fas fa-arrow-right"></i>
+              Get Quote
+            </a>
+          </div>
+        </div>
+
+        <div class="card policy-card">
+          <div class="policy-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="policy-content">
+            <h3>Home Insurance</h3>
+            <p class="policy-description">Protect your home and belongings with comprehensive coverage tailored to your needs.</p>
+            <div class="policy-features">
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Property Protection</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Personal Liability</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Natural Disasters</span>
+              </div>
+            </div>
+            <div class="policy-price">
+              <span class="price">Starting at $45/month</span>
+            </div>
+            <a routerLink="/policies" class="btn btn-outline">
+              <i class="fas fa-arrow-right"></i>
+              Learn More
+            </a>
+          </div>
+        </div>
+
+        <div class="card policy-card">
+          <div class="policy-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <div class="policy-content">
+            <h3>Health Insurance</h3>
+            <p class="policy-description">Comprehensive health coverage with access to top healthcare providers nationwide.</p>
+            <div class="policy-features">
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Preventive Care</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Emergency Coverage</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Prescription Drugs</span>
+              </div>
+            </div>
+            <div class="policy-price">
+              <span class="price">Starting at $120/month</span>
+            </div>
+            <a routerLink="/policies" class="btn btn-outline">
+              <i class="fas fa-arrow-right"></i>
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehensive Coverage Section -->
+    <section class="comprehensive-section">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-shield-virus"></i>
+          Comprehensive Coverage Options
+        </h2>
+        <p>Explore our full range of insurance products designed to protect every aspect of your life and business.</p>
+      </div>
+
+      <div class="comprehensive-grid">
+        <div class="card policy-card">
+          <div class="policy-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="policy-content">
+            <h3>Business Insurance</h3>
+            <p class="policy-description">Protect your business with comprehensive coverage for property, liability, and more.</p>
+            <div class="policy-features">
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>General Liability</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Property Coverage</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Professional Liability</span>
+              </div>
+            </div>
+            <div class="policy-price">
+              <span class="price">Starting at $75/month</span>
+            </div>
+            <a routerLink="/policies" class="btn btn-outline">
+              <i class="fas fa-arrow-right"></i>
+              Explore Coverage
+            </a>
+          </div>
+        </div>
+
+        <div class="card policy-card">
+          <div class="policy-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="policy-content">
+            <h3>Life Insurance</h3>
+            <p class="policy-description">Secure your family's future with flexible life insurance options including term, whole life, and universal coverage.</p>
+            <div class="policy-features">
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Term Life</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Whole Life</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Universal Life</span>
+              </div>
+            </div>
+            <div class="policy-price">
+              <span class="price">Starting at $20/month</span>
+            </div>
+            <a routerLink="/policies" class="btn btn-outline">
+              <i class="fas fa-arrow-right"></i>
+              Explore Coverage
+            </a>
+          </div>
+        </div>
+
+        <div class="card policy-card">
+          <div class="policy-icon">
+            <i class="fas fa-plane"></i>
+          </div>
+          <div class="policy-content">
+            <h3>Travel Insurance</h3>
+            <p class="policy-description">Protect your trips with comprehensive travel coverage including medical emergencies, trip cancellation, and baggage protection.</p>
+            <div class="policy-features">
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Trip Cancellation</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Medical Emergency</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-check"></i>
+                <span>Baggage Protection</span>
+              </div>
+            </div>
+            <div class="policy-price">
+              <span class="price">Starting at $25/trip</span>
+            </div>
+            <a routerLink="/policies" class="btn btn-outline">
+              <i class="fas fa-arrow-right"></i>
+              Explore Coverage
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-play-circle"></i>
+          How It Works
+        </h2>
+        <p>Getting the right insurance coverage is simple with our streamlined process.</p>
+      </div>
+
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3>Compare & Choose</h3>
+            <p>Browse our comprehensive range of insurance policies and compare coverage options to find the perfect fit for your needs.</p>
+          </div>
+        </div>
+
+        <div class="step-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3>Get Your Quote</h3>
+            <p>Get an instant, personalized quote in minutes. Our advanced algorithms ensure you get the best rates available.</p>
+          </div>
+        </div>
+
+        <div class="step-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <i class="fas fa-file-signature"></i>
+            </div>
+            <h3>Sign Up & Pay</h3>
+            <p>Complete your application online and make your first payment. Your coverage starts immediately upon approval.</p>
+    </div>
+  </div>
+
+        <div class="step-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-icon">
+              <i class="fas fa-shield-check"></i>
+            </div>
+            <h3>Stay Protected</h3>
+            <p>Manage your policies, submit claims, and track payments all from your secure online dashboard.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Features Section -->
+    <section class="features-section">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-cogs"></i>
+          Advanced Insurance Management Platform
+        </h2>
+        <p>Our cutting-edge platform provides everything you need for seamless insurance management.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="card feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Mobile-First Design</h3>
+          <p>Access your insurance information anywhere, anytime with our responsive mobile platform.</p>
+        </div>
+
+        <div class="card feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Instant Claims Processing</h3>
+          <p>Submit claims in minutes and get real-time updates on processing status with our AI-powered system.</p>
+        </div>
+
+        <div class="card feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>Bank-Level Security</h3>
+          <p>Your data is protected with enterprise-grade encryption and security protocols.</p>
+        </div>
+
+        <div class="card feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Smart Analytics</h3>
+          <p>Get insights into your coverage with detailed analytics and personalized recommendations.</p>
+        </div>
+
+        <div class="card feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>24/7 Customer Support</h3>
+          <p>Get help whenever you need it with our round-the-clock customer support team.</p>
+        </div>
+
+        <div class="card feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+          <h3>Auto-Renewal</h3>
+          <p>Never worry about lapsed coverage with our automatic renewal system and payment reminders.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-quote-left"></i>
+          What Our Customers Say
+        </h2>
+        <p>Don't just take our word for it - hear from our satisfied customers.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="card testimonial-card">
+          <div class="testimonial-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"SecureGuard Insurance has been amazing! Their claims process is so fast and their customer service is outstanding. I've been with them for 5 years and couldn't be happier."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <h4>Sarah Johnson</h4>
+              <span>Auto Insurance Customer</span>
+            </div>
+          </div>
+          </div>
+
+        <div class="card testimonial-card">
+          <div class="testimonial-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"The online platform is incredibly user-friendly. I can manage all my policies, submit claims, and track payments from anywhere. It's made insurance management so much easier!"</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <h4>Michael Chen</h4>
+              <span>Home Insurance Customer</span>
+            </div>
+          </div>
+          </div>
+
+        <div class="card testimonial-card">
+          <div class="testimonial-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"When I had a claim, SecureGuard processed it within 48 hours. Their 24/7 support team was there every step of the way. Truly exceptional service!"</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <h4>Emily Rodriguez</h4>
+              <span>Business Insurance Customer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-question-circle"></i>
+          Frequently Asked Questions
+        </h2>
+        <p>Get answers to common questions about our insurance services and platform.</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="card faq-item">
+          <div class="faq-question">
+            <h3>
+              <i class="fas fa-question"></i>
+              How quickly can I get a quote?
+            </h3>
+          </div>
+          <div class="faq-answer">
+            <p>You can get an instant quote in just 2-3 minutes by filling out our simple online form. Our advanced algorithms provide personalized rates based on your specific needs and circumstances.</p>
+          </div>
+        </div>
+
+        <div class="card faq-item">
+          <div class="faq-question">
+            <h3>
+              <i class="fas fa-question"></i>
+              What types of insurance do you offer?
+            </h3>
+          </div>
+          <div class="faq-answer">
+            <p>We offer comprehensive coverage including auto, home, health, business, life, travel, pet, motorcycle, boat, and umbrella insurance. Our platform covers virtually every aspect of your life and business.</p>
+          </div>
+        </div>
+
+        <div class="card faq-item">
+          <div class="faq-question">
+            <h3>
+              <i class="fas fa-question"></i>
+              How do I submit a claim?
+            </h3>
+          </div>
+          <div class="faq-answer">
+            <p>Submitting a claim is easy! Simply log into your account, click "Submit Claim," fill out the required information, and upload any supporting documents. Most claims are processed within 24-48 hours.</p>
+          </div>
+        </div>
+
+        <div class="card faq-item">
+          <div class="faq-question">
+            <h3>
+              <i class="fas fa-question"></i>
+              Can I manage multiple policies in one place?
+            </h3>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely! Our platform allows you to manage all your insurance policies from a single dashboard. View coverage details, make payments, submit claims, and track policy status all in one convenient location.</p>
+          </div>
+        </div>
+
+        <div class="card faq-item">
+          <div class="faq-question">
+            <h3>
+              <i class="fas fa-question"></i>
+              Is my personal information secure?
+            </h3>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, we use bank-level encryption and security protocols to protect your data. We're fully compliant with industry standards and never share your information with third parties without your consent.</p>
+    </div>
+  </div>
+
+        <div class="card faq-item">
+          <div class="faq-question">
+            <h3>
+              <i class="fas fa-question"></i>
+              What if I need to cancel my policy?
+            </h3>
+          </div>
+          <div class="faq-answer">
+            <p>You can cancel your policy anytime through your online dashboard or by contacting our customer service team. We offer a 30-day money-back guarantee, and there are no cancellation fees.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="card cta-card">
+        <div class="section-header">
+          <h2>
+            <i class="fas fa-rocket"></i>
+            Ready to Experience the Future of Insurance?
+      </h2>
+          <p>Join over 50,000+ satisfied customers and get comprehensive coverage with industry-leading service. Get your free quote today!</p>
+        </div>
+        
+        <div class="cta-stats">
+          <div class="cta-stat">
+            <div class="stat-number">50,000+</div>
+            <div class="stat-label">Happy Customers</div>
+          </div>
+          <div class="cta-stat">
+            <div class="stat-number">99.8%</div>
+            <div class="stat-label">Claims Approved</div>
+          </div>
+          <div class="cta-stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Support Available</div>
+          </div>
+        </div>
+        
+        <div class="cta-actions">
+          <a routerLink="/register" class="btn btn-primary btn-lg">
+            <i class="fas fa-user-plus"></i>
+            Get Your Free Quote
+          </a>
+          <a routerLink="/policies" class="btn btn-outline btn-lg">
+            <i class="fas fa-search"></i>
+            Browse All Policies
+          </a>
+          <a routerLink="/login" class="btn btn-success btn-lg">
+            <i class="fas fa-sign-in-alt"></i>
+            Sign In
+      </a>
+    </div>
+        
+        <div class="cta-guarantee">
+          <i class="fas fa-shield-check"></i>
+          <span>30-day money-back guarantee • No hidden fees • Cancel anytime</span>
+        </div>
+        
+        <div class="cta-contact">
+          <p>Need help? Contact our experts</p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>1-800-SECURE-1</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>support@secureguard.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-comments"></i>
+              <span>Live Chat Available</span>
+            </div>
+          </div>
+        </div>
+  </div>
+    </section>
+  </main>
+</div>

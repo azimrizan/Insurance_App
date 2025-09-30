@@ -1,0 +1,148 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Policy Details
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/policies" class="btn btn-outline">
+          <i class="fas fa-arrow-left"></i>
+          Back to Policies
+        </a>
+        <a routerLink="/dashboard" class="btn btn-outline">
+          <i class="fas fa-tachometer-alt"></i>
+          Dashboard
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-file-contract"></i>
+        Policy Details
+      </h2>
+      <p>Review policy information and purchase your insurance coverage.</p>
+    </header>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="alert error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Success State -->
+    <div *ngIf="success" class="alert alert-success">
+      <i class="fas fa-check-circle"></i>
+      {{ success }}
+    </div>
+
+    <!-- Policy Details -->
+    <div *ngIf="!loading && policy" class="policy-details-grid">
+      <!-- Policy Information -->
+      <div class="card policy-info">
+        <div class="policy-header">
+          <div class="policy-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="policy-title-section">
+            <h2>{{ policy.title }}</h2>
+            <p class="policy-code">Code: {{ policy.code }}</p>
+          </div>
+        </div>
+        
+        <p class="policy-description">{{ policy.description }}</p>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Premium</span>
+            <span class="info-value">${{ policy.premium }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Term</span>
+            <span class="info-value">{{ policy.termMonths }} months</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Minimum Coverage</span>
+            <span class="info-value">${{ policy.minSumInsured }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Type</span>
+            <span class="info-value">Insurance Policy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Purchase Form -->
+      <div class="card purchase-form">
+        <h3>
+          <i class="fas fa-shopping-cart"></i>
+          Purchase Policy
+        </h3>
+        <form [formGroup]="purchaseForm" (ngSubmit)="onPurchase()">
+          <div class="form-group">
+            <label class="form-label" for="startDate">Start Date</label>
+            <input type="date" id="startDate" formControlName="startDate" class="form-input" />
+            <div *ngIf="purchaseForm.get('startDate')?.invalid && purchaseForm.get('startDate')?.touched" class="error">
+              <i class="fas fa-exclamation-circle"></i>
+              Start date is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="termMonths">Term (Months)</label>
+            <input type="number" id="termMonths" formControlName="termMonths" min="1" class="form-input" placeholder="Enter term in months" />
+            <div *ngIf="purchaseForm.get('termMonths')?.invalid && purchaseForm.get('termMonths')?.touched" class="error">
+              <i class="fas fa-exclamation-circle"></i>
+              <div *ngIf="purchaseForm.get('termMonths')?.errors?.['required']">Term is required</div>
+              <div *ngIf="purchaseForm.get('termMonths')?.errors?.['min']">Term must be at least 1 month</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="nomineeName">Nominee Name</label>
+            <input type="text" id="nomineeName" formControlName="nomineeName" class="form-input" placeholder="Enter nominee's full name" />
+            <div *ngIf="purchaseForm.get('nomineeName')?.invalid && purchaseForm.get('nomineeName')?.touched" class="error">
+              <i class="fas fa-exclamation-circle"></i>
+              Nominee name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="nomineeRelation">Relation to Nominee</label>
+            <select id="nomineeRelation" formControlName="nomineeRelation" class="form-select">
+              <option value="">Select relation</option>
+              <option value="spouse">Spouse</option>
+              <option value="child">Child</option>
+              <option value="parent">Parent</option>
+              <option value="sibling">Sibling</option>
+              <option value="other">Other</option>
+            </select>
+            <div *ngIf="purchaseForm.get('nomineeRelation')?.invalid && purchaseForm.get('nomineeRelation')?.touched" class="error">
+              <i class="fas fa-exclamation-circle"></i>
+              Nominee relation is required
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" [disabled]="purchaseForm.invalid || purchasing">
+              <i *ngIf="!purchasing" class="fas fa-shopping-cart"></i>
+              <span *ngIf="purchasing" class="spinner"></span>
+              {{ purchasing ? 'Purchasing...' : 'Purchase Policy' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

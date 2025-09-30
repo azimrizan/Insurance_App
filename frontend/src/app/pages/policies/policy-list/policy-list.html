@@ -1,0 +1,187 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Insurance Policies
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/dashboard" class="btn btn-outline">
+          <i class="fas fa-tachometer-alt"></i>
+          Dashboard
+        </a>
+        <button *ngIf="isAdmin()" class="btn btn-primary" (click)="toggleAddForm()">
+          <i class="fas fa-plus"></i>
+          Add Policy
+        </button>
+        <button (click)="authService.logout()" class="btn btn-error">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-file-contract"></i>
+        Insurance Policies
+      </h2>
+      <p>Browse and manage our comprehensive range of insurance products designed to protect what matters most to you.</p>
+    </header>
+
+    <!-- Admin: Add Policy -->
+    <div *ngIf="isAdmin() && showAddForm" class="card form-card">
+      <h3>
+        <i class="fas fa-plus-circle"></i>
+        Add New Policy Product
+      </h3>
+      <form [formGroup]="addForm" (ngSubmit)="createPolicy()" class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Policy Code</label>
+          <input class="form-input" placeholder="Enter policy code" formControlName="code" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Policy Title</label>
+          <input class="form-input" placeholder="Enter policy title" formControlName="title" />
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" placeholder="Enter policy description" formControlName="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Premium ($)</label>
+          <input class="form-input" type="number" placeholder="Enter premium amount" formControlName="premium" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Term (months)</label>
+          <input class="form-input" type="number" placeholder="Enter term in months" formControlName="termMonths" />
+        </div>
+        <div class="full">
+          <button class="btn btn-primary" type="submit" [disabled]="addForm.invalid">
+            <i class="fas fa-save"></i>
+            Create Policy
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper policies">
+            <i class="fas fa-file-contract stat-icon"></i>
+          </div>
+          <div class="stat-label">Total Policies</div>
+          <div class="stat-value">{{ policies.length }}</div>
+          <p class="stat-desc">Available insurance products</p>
+        </div>
+      </div>
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper claims">
+            <i class="fas fa-shield-check stat-icon"></i>
+          </div>
+          <div class="stat-label">Active Policies</div>
+          <div class="stat-value">{{ policies.length - 1 }}</div>
+          <p class="stat-desc">Currently active policies</p>
+        </div>
+      </div>
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper payments">
+            <i class="fas fa-clock stat-icon"></i>
+          </div>
+          <div class="stat-label">Expiring Soon</div>
+          <div class="stat-value">2</div>
+          <p class="stat-desc">Policies expiring within 30 days</p>
+        </div>
+      </div>
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper total">
+            <i class="fas fa-dollar-sign stat-icon"></i>
+          </div>
+          <div class="stat-label">Total Coverage</div>
+          <div class="stat-value">$2.4M</div>
+          <p class="stat-desc">Combined coverage value</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="alert error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Policies Grid -->
+    <div *ngIf="!loading && !error" class="policies-section">
+      <div class="policies-header">
+        <h3>
+          <i class="fas fa-list"></i>
+          Available Policies
+        </h3>
+        <p>Choose from our comprehensive range of insurance products</p>
+      </div>
+      
+      <div class="policy-grid">
+        <div *ngFor="let policy of policies" class="card policy-card">
+          <div class="policy-header">
+            <div class="policy-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="policy-info">
+              <h3>{{ policy.title }}</h3>
+              <p class="policy-code">Code: {{ policy.code }}</p>
+            </div>
+          </div>
+          <div class="policy-desc">{{ policy.description }}</div>
+          <div class="policy-meta">
+            <div class="meta-item">
+              <span class="meta-label">Premium</span>
+              <strong class="meta-value">${{ policy.premium }}</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Term</span>
+              <strong class="meta-value">{{ policy.termMonths }} months</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Min. Coverage</span>
+              <strong class="meta-value">${{ policy.minSumInsured }}</strong>
+            </div>
+          </div>
+          <div class="policy-actions">
+            <a [routerLink]="['/policies', policy._id]" class="btn btn-primary">
+              <i class="fas fa-eye"></i>
+              View Details
+            </a>
+            <button *ngIf="isAdmin()" class="btn btn-error" (click)="deletePolicy(policy._id)">
+              <i class="fas fa-trash"></i>
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && !error && policies.length === 0" class="card empty-state">
+      <div class="empty-icon">
+        <i class="fas fa-inbox"></i>
+      </div>
+      <h3>No policies available</h3>
+      <p>There are currently no insurance policies available.</p>
+    </div>
+  </main>
+</div>

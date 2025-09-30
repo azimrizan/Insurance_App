@@ -1,0 +1,99 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Admin Dashboard
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/dashboard" class="btn btn-outline">
+          <i class="fas fa-tachometer-alt"></i>
+          User Dashboard
+        </a>
+        <button (click)="authService.logout()" class="btn btn-error">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-cogs"></i>
+        Admin Dashboard
+      </h2>
+      <p>System overview and management tools for administrators.</p>
+    </header>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="error" class="alert error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div *ngIf="!loading && !error" class="admin-cards-grid">
+      <a routerLink="/admin/summary" class="card admin-card">
+        <div class="admin-card-icon">
+          <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="admin-card-content">
+          <h3>Summary</h3>
+          <p>KPIs and system totals</p>
+        </div>
+        <div class="admin-card-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+      
+      <a routerLink="/admin/agents" class="card admin-card">
+        <div class="admin-card-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="admin-card-content">
+          <h3>Agents</h3>
+          <p>Create and assign agents</p>
+        </div>
+        <div class="admin-card-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+      
+      <a routerLink="/admin/claims" class="card admin-card">
+        <div class="admin-card-icon">
+          <i class="fas fa-clipboard-check"></i>
+        </div>
+        <div class="admin-card-content">
+          <h3>Claims</h3>
+          <p>Review and decide on claims</p>
+        </div>
+        <div class="admin-card-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+      
+      <a routerLink="/admin/audit" class="card admin-card">
+        <div class="admin-card-icon">
+          <i class="fas fa-history"></i>
+        </div>
+        <div class="admin-card-content">
+          <h3>Audit</h3>
+          <p>Recent system activity</p>
+        </div>
+        <div class="admin-card-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>

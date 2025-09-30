@@ -1,0 +1,446 @@
+/* ================== Policy List Page Specific Styles ================== */
+
+/* Override global card styles for this page */
+.stats-grid .card.stat {
+  background: #3B59B6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: #fff;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+
+  .stat-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .stat-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &.policies {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    &.claims {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+    }
+
+    &.payments {
+      background: linear-gradient(135deg, #10b981, #059669);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+    }
+
+    &.total {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+    }
+
+    .stat-icon {
+      font-size: 1.5rem;
+      color: #fff;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+      font-weight: 900;
+      display: block;
+    }
+  }
+
+  .stat-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0.5rem 0;
+    line-height: 1;
+  }
+
+  .stat-desc {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-top: 1rem;
+  }
+
+  &.card-glow {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3B59B6, #10b981, #8b5cf6, #f59e0b);
+      background-size: 300% 100%;
+      animation: gradientShift 3s ease infinite;
+    }
+  }
+}
+
+/* Stats Grid Layout */
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  padding: 0 1rem;
+  justify-content: center;
+}
+
+.form-card {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #3B59B6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: #fff;
+
+  h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      color: rgba(255, 255, 255, 0.8);
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+      font-weight: 900;
+    }
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    .form-group {
+      margin-bottom: 0;
+
+      &.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0.5rem;
+      }
+
+      .form-input,
+      .form-textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        color: #fff;
+        font-size: 1rem;
+        transition: var(--transition-normal);
+        backdrop-filter: blur(10px);
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: var(--color-primary-400);
+          background: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+    }
+  }
+}
+
+.policies-section {
+  margin-top: 3rem;
+
+  .policies-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h3 {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      i {
+        color: var(--color-primary-400);
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+      }
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+
+  .policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .policy-card {
+    padding: 2rem;
+    background: #3B59B6;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+
+    .policy-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+
+      .policy-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #3B59B6, #2d4a9a);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(59, 89, 182, 0.3);
+        flex-shrink: 0;
+
+        i {
+          font-size: 1.5rem;
+          color: #fff;
+          font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+          font-weight: 900;
+        }
+      }
+
+      .policy-info {
+        flex: 1;
+
+        h3 {
+          color: #fff;
+          font-size: 1.3rem;
+          font-weight: 700;
+          margin: 0 0 0.5rem 0;
+        }
+
+        .policy-code {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.9rem;
+          margin: 0;
+        }
+      }
+    }
+
+    .policy-desc {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .policy-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .meta-label {
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.8rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+          color: #fff;
+          font-size: 1.1rem;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .policy-actions {
+      display: flex;
+      gap: 1rem;
+
+      .btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        i {
+          font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+          font-weight: 900;
+        }
+      }
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #3B59B6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: #fff;
+
+  .empty-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+
+    i {
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+      font-weight: 900;
+    }
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+/* ================== Responsive Design ================== */
+@media (max-width: 768px) {
+  .form-card {
+    padding: 1.5rem;
+
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .policies-section {
+    .policy-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .policy-card {
+      padding: 1.5rem;
+
+      .policy-header {
+        .policy-icon {
+          width: 50px;
+          height: 50px;
+
+          i {
+            font-size: 1.2rem;
+          }
+        }
+
+        .policy-info h3 {
+          font-size: 1.1rem;
+        }
+      }
+
+      .policy-meta {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .policy-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .form-card {
+    padding: 1rem;
+  }
+
+  .policies-section {
+    .policy-card {
+      padding: 1rem;
+
+      .policy-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+
+        .policy-icon {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,285 @@
+/* ================== Register Page Specific Styles ================== */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem 0;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 3rem 2.5rem;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: #3B59B6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: #fff;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3B59B6, #10b981, #8b5cf6, #f59e0b);
+    background-size: 300% 100%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+
+      i {
+        color: #3b82f6;
+        font-size: 2rem;
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+        
+        // Fallback if FontAwesome doesn't load
+        &.fa-user-plus::before {
+          content: "👤";
+          font-family: inherit;
+          font-weight: normal;
+        }
+      }
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+  }
+}
+
+.auth-form {
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.5rem;
+
+      i {
+        color: var(--color-primary-400);
+        font-size: 1rem;
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+        
+        // Fallback icons
+        &.fa-user::before {
+          content: "👤";
+          font-family: inherit;
+          font-weight: normal;
+        }
+        
+        &.fa-envelope::before {
+          content: "📧";
+          font-family: inherit;
+          font-weight: normal;
+        }
+        
+        &.fa-lock::before {
+          content: "🔒";
+          font-family: inherit;
+          font-weight: normal;
+        }
+      }
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1rem;
+      transition: var(--transition-normal);
+      backdrop-filter: blur(10px);
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary-400);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+    }
+
+    .error {
+      margin-top: 0.5rem;
+      color: var(--color-error-300);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+        
+        &.fa-exclamation-circle::before {
+          content: "⚠";
+          font-family: inherit;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
+    i {
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+      font-weight: 900;
+      
+      &.fa-user-plus::before {
+        content: "👤";
+        font-family: inherit;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    p {
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .auth-link {
+      color: var(--color-primary-300);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 0.5rem;
+      transition: var(--transition-normal);
+
+      &:hover {
+        color: var(--color-primary-200);
+        text-decoration: underline;
+      }
+
+      i {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+        
+        &.fa-sign-in-alt::before {
+          content: "🔐";
+          font-family: inherit;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+.error-alert {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid var(--color-error-500);
+  color: var(--color-error-300);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  backdrop-filter: blur(10px);
+
+  i {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+    font-weight: 900;
+    
+    &.fa-exclamation-triangle::before {
+      content: "⚠";
+      font-family: inherit;
+      font-weight: normal;
+    }
+  }
+}
+
+/* ================== Responsive Design ================== */
+@media (max-width: 768px) {
+  .auth-container {
+    min-height: 70vh;
+    padding: 1rem 0;
+  }
+
+  .auth-card {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
+
+    .section-header {
+      margin-bottom: 2rem;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.5rem 1rem;
+    margin: 0 0.5rem;
+
+    .section-header h2 {
+      font-size: 1.75rem;
+    }
+  }
+}

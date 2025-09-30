@@ -1,0 +1,75 @@
+@use './styles/ui-global.scss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --ring-color: rgba(37, 99, 235, 0.5);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  margin: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  color: #fff;
+  background-color: var(--color-primary-600);
+  transition: background-color 200ms ease;
+}
+
+.btn:hover { background-color: var(--color-primary-700); }
+.btn:focus { outline: 2px solid var(--ring-color); outline-offset: 2px; }
+
+.btn-secondary { background-color: #4b5563; }
+.btn-secondary:hover { background-color: #374151; }
+
+.btn-outline {
+  background: transparent;
+  border-color: #d1d5db;
+  color: #374151;
+}
+.btn-outline:hover { background-color: #f9fafb; }
+
+.card {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f3f4f6;
+  overflow: hidden;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  color: #111827;
+}
+.form-input::placeholder { color: #9ca3af; }
+.form-input:focus { outline: 2px solid var(--ring-color); border-color: var(--color-primary-600); }
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}

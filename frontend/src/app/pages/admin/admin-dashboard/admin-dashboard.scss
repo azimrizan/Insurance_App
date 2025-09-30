@@ -1,0 +1,114 @@
+/* ================== Admin Dashboard Page Specific Styles ================== */
+
+.admin-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+
+  .admin-card {
+    padding: 2rem;
+    background: #3B59B6;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .admin-card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #3B59B6, #2d4a9a);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(59, 89, 182, 0.3);
+      flex-shrink: 0;
+
+      i {
+        font-size: 1.5rem;
+        color: #fff;
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+      }
+    }
+
+    .admin-card-content {
+      flex: 1;
+
+      h3 {
+        color: #fff;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
+
+    .admin-card-arrow {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+
+      i {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+      }
+    }
+
+    &:hover .admin-card-arrow {
+      color: #fff;
+      transform: translateX(4px);
+    }
+  }
+}
+
+/* ================== Responsive Design ================== */
+@media (max-width: 768px) {
+  .admin-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    .admin-card {
+      padding: 1.5rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+
+      .admin-card-icon {
+        margin: 0 auto;
+      }
+
+      .admin-card-arrow {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-cards-grid {
+    .admin-card {
+      padding: 1rem;
+    }
+  }
+}

@@ -1,0 +1,270 @@
+/* ================== Policy Detail Page Specific Styles ================== */
+
+.policy-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.policy-info {
+  padding: 2rem;
+  background: #3B59B6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: #fff;
+
+  .policy-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .policy-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #3B59B6, #2d4a9a);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(59, 89, 182, 0.3);
+      flex-shrink: 0;
+
+      i {
+        font-size: 1.5rem;
+        color: #fff;
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+      }
+    }
+
+    .policy-title-section {
+      flex: 1;
+
+      h2 {
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+      }
+
+      .policy-code {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin: 0;
+      }
+    }
+  }
+
+  .policy-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      .info-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .info-value {
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.purchase-form {
+  padding: 2rem;
+  background: #3B59B6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: #fff;
+
+  h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      color: rgba(255, 255, 255, 0.8);
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+      font-weight: 900;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1rem;
+      transition: var(--transition-normal);
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    .form-select {
+      option {
+        background: #1e293b;
+        color: #fff;
+      }
+    }
+
+    .error {
+      margin-top: 0.5rem;
+      color: var(--color-error-300);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+      }
+    }
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+
+    .btn {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      .spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid #fff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+      }
+
+      i {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+        font-weight: 900;
+      }
+    }
+  }
+}
+
+.alert-success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid var(--color-success-500);
+  color: var(--color-success-300);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  i {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+    font-weight: 900;
+  }
+}
+
+/* ================== Responsive Design ================== */
+@media (max-width: 768px) {
+  .policy-details-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .policy-info {
+    padding: 1.5rem;
+
+    .policy-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+
+      .policy-icon {
+        margin: 0 auto;
+      }
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+
+  .purchase-form {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .policy-info {
+    padding: 1rem;
+  }
+
+  .purchase-form {
+    padding: 1rem;
+  }
+}

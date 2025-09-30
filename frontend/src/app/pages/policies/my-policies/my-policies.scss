@@ -1,0 +1,263 @@
+/* ================== My Policies Page Specific Styles ================== */
+
+.policies-section {
+  margin-top: 3rem;
+
+  .policies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .policy-card {
+    padding: 2rem;
+    background: #3B59B6;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+
+    .policy-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+
+      .policy-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #3B59B6, #2d4a9a);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(59, 89, 182, 0.3);
+        flex-shrink: 0;
+
+        i {
+          font-size: 1.5rem;
+          color: #fff;
+          font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+          font-weight: 900;
+        }
+      }
+
+      .policy-info {
+        flex: 1;
+
+        h3 {
+          color: #fff;
+          font-size: 1.3rem;
+          font-weight: 700;
+          margin: 0 0 0.5rem 0;
+        }
+
+        .policy-code {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.9rem;
+          margin: 0;
+        }
+      }
+
+      .policy-status {
+        .badge {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.25rem 0.75rem;
+          border-radius: 12px;
+          font-size: 0.75rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+
+          &.badge-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--color-success-300);
+            border: 1px solid var(--color-success-500);
+          }
+
+          &.badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--color-warning-300);
+            border: 1px solid var(--color-warning-500);
+          }
+
+          &.badge-error {
+            background: rgba(220, 38, 38, 0.2);
+            color: var(--color-error-300);
+            border: 1px solid var(--color-error-500);
+          }
+
+          &.badge-info {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--color-primary-300);
+            border: 1px solid var(--color-primary-500);
+          }
+        }
+      }
+    }
+
+    .policy-details {
+      margin-bottom: 1.5rem;
+
+      .detail-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .detail-label {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+
+        .detail-value {
+          color: #fff;
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .policy-actions {
+      display: flex;
+      gap: 1rem;
+
+      .btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        i {
+          font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+          font-weight: 900;
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #3B59B6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: #fff;
+
+  .empty-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+
+    i {
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+      font-weight: 900;
+    }
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+
+    i {
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome", sans-serif;
+      font-weight: 900;
+    }
+  }
+}
+
+/* ================== Responsive Design ================== */
+@media (max-width: 768px) {
+  .policies-section {
+    .policies-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .policy-card {
+      padding: 1.5rem;
+
+      .policy-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+
+        .policy-icon {
+          margin: 0 auto;
+        }
+      }
+
+      .policy-details {
+        .detail-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+        }
+      }
+
+      .policy-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+  }
+
+  .empty-state {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .policies-section {
+    .policy-card {
+      padding: 1rem;
+    }
+  }
+
+  .empty-state {
+    padding: 2rem 1rem;
+  }
+}

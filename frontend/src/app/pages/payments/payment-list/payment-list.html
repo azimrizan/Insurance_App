@@ -1,0 +1,162 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Payment History
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/dashboard" class="btn btn-outline">
+          <i class="fas fa-tachometer-alt"></i>
+          Dashboard
+        </a>
+        <button (click)="authService.logout()" class="btn btn-error">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-credit-card"></i>
+        Payment History
+      </h2>
+      <p>View your payment history, record new payments, and track your transaction details.</p>
+    </header>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="alert error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- New Payment Form -->
+    <div class="card form-card">
+      <h3>
+        <i class="fas fa-plus-circle"></i>
+        Record New Payment
+      </h3>
+      <form [formGroup]="payForm" (ngSubmit)="submitPayment()" class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Policy</label>
+          <select class="form-select" formControlName="policyId">
+            <option value="" disabled selected>Select policy</option>
+            <option *ngFor="let p of policies" [value]="p._id">
+              {{ p.policyProductId.title || p._id }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Amount ($)</label>
+          <input class="form-input" type="number" min="1" placeholder="Enter payment amount" formControlName="amount" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Method</label>
+          <select class="form-select" formControlName="method">
+            <option value="SIMULATED">Simulated</option>
+            <option value="OFFLINE">Offline</option>
+            <option value="CARD">Card</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reference</label>
+          <input class="form-input" type="text" placeholder="Receipt/Transaction reference" formControlName="reference" />
+        </div>
+        <div class="full">
+          <button class="btn btn-primary" type="submit" [disabled]="payForm.invalid">
+            <i class="fas fa-save"></i>
+            Record Payment
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Summary Cards -->
+    <div *ngIf="!loading && !error && payments.length > 0" class="stats-grid">
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper payments">
+            <i class="fas fa-credit-card stat-icon"></i>
+          </div>
+          <div class="stat-label">Total Payments</div>
+          <div class="stat-value">{{ payments.length }}</div>
+          <p class="stat-desc">Number of payments made</p>
+        </div>
+      </div>
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper total">
+            <i class="fas fa-dollar-sign stat-icon"></i>
+          </div>
+          <div class="stat-label">Total Amount</div>
+          <div class="stat-value">{{ formatAmount(getTotalAmount()) }}</div>
+          <p class="stat-desc">Total amount paid</p>
+        </div>
+      </div>
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper policies">
+            <i class="fas fa-chart-line stat-icon"></i>
+          </div>
+          <div class="stat-label">Average Payment</div>
+          <div class="stat-value">{{ formatAmount(getAverageAmount()) }}</div>
+          <p class="stat-desc">Average payment amount</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payments List -->
+    <div *ngIf="!loading && !error" class="payments-section">
+      <div *ngIf="payments.length === 0" class="card empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-inbox"></i>
+        </div>
+        <h3>No payments recorded</h3>
+        <p>You haven't made any payments yet. Use the form above to record your first payment.</p>
+      </div>
+
+      <div *ngIf="payments.length > 0" class="payments-grid">
+        <div *ngFor="let payment of payments" class="card payment-card">
+          <div class="payment-header">
+            <div class="payment-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="payment-info">
+              <h3>Payment #{{ payment._id.slice(-8) }}</h3>
+              <p class="payment-date">{{ formatDate(payment.createdAt) }}</p>
+            </div>
+            <div class="payment-amount">
+              <span class="amount-value">{{ formatAmount(payment.amount) }}</span>
+            </div>
+          </div>
+
+          <div class="payment-details">
+            <div class="detail-item">
+              <span class="detail-label">Method:</span>
+              <span class="detail-value">{{ payment.method }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Reference:</span>
+              <span class="detail-value">{{ payment.reference || 'N/A' }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Policy:</span>
+              <span class="detail-value">{{ payment.userPolicyId || 'N/A' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,160 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Admin • Claims
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/admin" class="btn btn-outline">
+          <i class="fas fa-arrow-left"></i>
+          Back to Admin
+        </a>
+        <button (click)="authService.logout()" class="btn btn-error">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-clipboard-check"></i>
+        Claims Management
+      </h2>
+      <p>Review and manage insurance claims submitted by users.</p>
+    </header>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="alert error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Claims List -->
+    <div class="claims-section" *ngIf="!loading">
+      <div *ngIf="claims.length === 0" class="card empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-inbox"></i>
+        </div>
+        <h3>No claims submitted</h3>
+        <p>There are currently no claims submitted for review.</p>
+      </div>
+
+      <div *ngIf="claims.length > 0" class="claims-grid">
+        <div *ngFor="let c of claims" class="card claim-card">
+          <div class="claim-header">
+            <div class="claim-icon">
+              <i class="fas fa-file-invoice"></i>
+            </div>
+            <div class="claim-info">
+              <h3>Claim #{{ c._id.slice(-8) }}</h3>
+              <p class="claim-description">{{ c.description }}</p>
+            </div>
+            <div class="claim-status">
+              <span class="badge" [ngClass]="getStatusClass(c.status)">
+                {{ c.status }}
+              </span>
+            </div>
+          </div>
+
+          <div class="claim-details">
+            <div class="detail-item">
+              <span class="detail-label">Amount:</span>
+              <span class="detail-value">${{ c.amountClaimed }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Incident Date:</span>
+              <span class="detail-value">{{ c.incidentDate | date:'MMM dd, yyyy' }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">User ID:</span>
+              <span class="detail-value">{{ c.userId }}</span>
+            </div>
+          </div>
+
+          <div class="claim-actions">
+            <button class="btn btn-outline" (click)="view(c._id)">
+              <i class="fas fa-eye"></i>
+              View Details
+            </button>
+            <button class="btn btn-success" (click)="update(c._id, 'APPROVED')">
+              <i class="fas fa-check"></i>
+              Approve
+            </button>
+            <button class="btn btn-error" (click)="update(c._id, 'REJECTED')">
+              <i class="fas fa-times"></i>
+              Reject
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Claim Details Modal -->
+    <div class="card claim-details-modal" *ngIf="selected">
+      <h3>
+        <i class="fas fa-file-alt"></i>
+        Claim Details
+      </h3>
+      <div class="details-grid">
+        <div class="detail-item">
+          <span class="detail-label">Claim ID:</span>
+          <span class="detail-value">{{ selected._id }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">User ID:</span>
+          <span class="detail-value">{{ selected.userId }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Policy ID:</span>
+          <span class="detail-value">{{ selected.userPolicyId }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Incident Date:</span>
+          <span class="detail-value">{{ selected.incidentDate | date:'MMM dd, yyyy' }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Amount:</span>
+          <span class="detail-value">${{ selected.amountClaimed }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Status:</span>
+          <span class="detail-value">
+            <span class="badge" [ngClass]="getStatusClass(selected.status)">
+              {{ selected.status }}
+            </span>
+          </span>
+        </div>
+        <div class="detail-item full-width" *ngIf="selected.decisionNotes">
+          <span class="detail-label">Decision Notes:</span>
+          <span class="detail-value">{{ selected.decisionNotes }}</span>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-success" (click)="update(selected._id, 'APPROVED')">
+          <i class="fas fa-check"></i>
+          Approve Claim
+        </button>
+        <button class="btn btn-error" (click)="update(selected._id, 'REJECTED')">
+          <i class="fas fa-times"></i>
+          Reject Claim
+        </button>
+        <button class="btn btn-outline" (click)="selected = null">
+          <i class="fas fa-times"></i>
+          Close
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

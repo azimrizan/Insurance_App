@@ -1,0 +1,93 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Admin • Summary
+      </h1>
+      <div class="nav-actions">
+        <a routerLink="/admin" class="btn btn-outline">
+          <i class="fas fa-arrow-left"></i>
+          Back to Admin
+        </a>
+        <button (click)="authService.logout()" class="btn btn-error">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Section Header -->
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-chart-bar"></i>
+        System Summary
+      </h2>
+      <p>Overview of key performance indicators and system statistics.</p>
+    </header>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="alert error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="stats-grid">
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper users">
+            <i class="fas fa-users stat-icon"></i>
+          </div>
+          <div class="stat-label">Total Users</div>
+          <div class="stat-value">{{ summary?.users || 0 }}</div>
+          <p class="stat-desc">Registered users in the system</p>
+        </div>
+      </div>
+      
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper policies">
+            <i class="fas fa-file-contract stat-icon"></i>
+          </div>
+          <div class="stat-label">Policies Sold</div>
+          <div class="stat-value">{{ summary?.policiesSold || 0 }}</div>
+          <p class="stat-desc">Total policies purchased</p>
+        </div>
+      </div>
+      
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper claims">
+            <i class="fas fa-clipboard-check stat-icon"></i>
+          </div>
+          <div class="stat-label">Pending Claims</div>
+          <div class="stat-value">{{ summary?.claimsPending || 0 }}</div>
+          <p class="stat-desc">Claims awaiting review</p>
+        </div>
+      </div>
+      
+      <div class="card stat card-glow">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper total">
+            <i class="fas fa-dollar-sign stat-icon"></i>
+          </div>
+          <div class="stat-label">Total Payments</div>
+          <div class="stat-value">{{ (summary?.totalPayments || 0) | currency:'USD' }}</div>
+          <p class="stat-desc">Total revenue collected</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+

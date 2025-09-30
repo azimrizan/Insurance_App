@@ -1,0 +1,147 @@
+<div class="page">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <h1 class="brand">
+        <i class="fas fa-shield-alt brand-icon"></i>
+        Insurance Dashboard
+      </h1>
+      <div class="nav-actions">
+        <span class="welcome">
+          <i class="fas fa-user-circle"></i>
+          Welcome, {{ currentUser?.name }}
+        </span>
+        <button class="btn" (click)="authService.logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <header class="section-header">
+      <h2>
+        <i class="fas fa-chart-line"></i>
+        Dashboard
+      </h2>
+      <p>Here's a quick overview of your insurance portfolio and activities. Stay on top of your policies, claims, and payments.</p>
+    </header>
+
+    <!-- Loader -->
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <section *ngIf="!loading" class="section">
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="card stat card-glow">
+          <div class="stat-content">
+            <div class="stat-icon-wrapper policies">
+              <i class="fas fa-file-contract stat-icon"></i>
+            </div>
+            <div class="stat-label">Active Policies</div>
+            <div class="stat-value">{{ getActivePoliciesCount() }}</div>
+            <p class="stat-desc">Policies currently protecting you and your assets</p>
+          </div>
+        </div>
+
+        <div class="card stat card-glow">
+          <div class="stat-content">
+            <div class="stat-icon-wrapper claims">
+              <i class="fas fa-clipboard-check stat-icon"></i>
+            </div>
+            <div class="stat-label">Pending Claims</div>
+            <div class="stat-value">{{ getPendingClaimsCount() }}</div>
+            <p class="stat-desc">Claims awaiting review or approval</p>
+          </div>
+        </div>
+
+        <div class="card stat card-glow">
+          <div class="stat-content">
+            <div class="stat-icon-wrapper payments">
+              <i class="fas fa-credit-card stat-icon"></i>
+            </div>
+            <div class="stat-label">Total Payments</div>
+            <div class="stat-value">{{ recentPayments.length }}</div>
+            <p class="stat-desc">Payments made over time for your policies</p>
+          </div>
+        </div>
+
+        <div class="card stat card-glow">
+          <div class="stat-content">
+            <div class="stat-icon-wrapper total">
+              <i class="fas fa-shield-alt stat-icon"></i>
+            </div>
+            <div class="stat-label">Total Policies</div>
+            <div class="stat-value">{{ userPolicies.length }}</div>
+            <p class="stat-desc">All policies you have purchased</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card quick-actions">
+        <div class="qa-inner">
+          <h3>
+            <i class="fas fa-bolt"></i>
+            Quick Actions
+          </h3>
+          <p>Access the most common actions instantly and manage your insurance efficiently.</p>
+          <div class="qa-grid">
+            <a routerLink="/policies" class="action-card">
+              <div class="action-icon-wrapper view">
+                <i class="fas fa-file-invoice action-icon"></i>
+              </div>
+              <h4>View Policies</h4>
+              <p>Check all your active and expired policies at a glance.</p>
+            </a>
+
+            <a routerLink="/claims" class="action-card">
+              <div class="action-icon-wrapper submit">
+                <i class="fas fa-plus-circle action-icon"></i>
+              </div>
+              <h4>Submit Claim</h4>
+              <p>File a new claim quickly and track its progress.</p>
+            </a>
+
+            <a routerLink="/payments" class="action-card">
+              <div class="action-icon-wrapper payment">
+                <i class="fas fa-credit-card action-icon"></i>
+              </div>
+              <h4>Make Payment</h4>
+              <p>Pay premiums or outstanding balances in one click.</p>
+            </a>
+
+            <a routerLink="/policies" class="action-card">
+              <div class="action-icon-wrapper buy">
+                <i class="fas fa-shopping-cart action-icon"></i>
+              </div>
+              <h4>Buy Policy</h4>
+              <p>Purchase new insurance policies tailored to your needs.</p>
+            </a>
+
+            <a routerLink="/user/policies" class="action-card">
+              <div class="action-icon-wrapper manage">
+                <i class="fas fa-user-shield action-icon"></i>
+              </div>
+              <h4>My Policies</h4>
+              <p>View, update, or cancel your existing policies safely.</p>
+            </a>
+
+            <a *ngIf="currentUser?.role === 'admin'" routerLink="/admin" class="action-card admin">
+              <div class="action-icon-wrapper admin">
+                <i class="fas fa-cogs action-icon"></i>
+              </div>
+              <h4>Admin Panel</h4>
+              <p>Manage users, agents, claims, and system settings.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
