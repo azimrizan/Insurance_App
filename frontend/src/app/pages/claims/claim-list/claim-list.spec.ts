@@ -244,7 +244,7 @@ describe('ClaimListComponent', () => {
     component.submitForm.patchValue(mockSubmitClaimRequest);
     component.submitClaim();
 
-    expect(component.error).toBe('Failed to submit claim.');
+    expect(component.error).toBe('Failed to submit claim. Please try again.');
   });
 
   it('should return correct status class for PENDING', () => {

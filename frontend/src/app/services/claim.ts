@@ -10,7 +10,8 @@ export interface Claim {
   incidentDate: string;
   description: string;
   amountClaimed: number;
-  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  claimNumber?: string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED' | 'PAID';
   decisionNotes?: string;
   decidedByAgentId?: string;
   createdAt: string;
@@ -25,7 +26,7 @@ export interface SubmitClaimRequest {
 }
 
 export interface UpdateClaimStatusRequest {
-  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  status: 'PENDING' | 'APPROVED' | 'REJECTED' | 'PAID';
   notes?: string;
 }
 

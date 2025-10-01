@@ -68,15 +68,23 @@ export class ClaimListComponent implements OnInit {
   }
 
   submitClaim() {
-    if (this.submitForm.invalid) return;
+    if (this.submitForm.invalid) {
+      this.error = 'Please fill in all required fields correctly.';
+      return;
+    }
+    
+    this.error = ''; // Clear previous errors
     const data: SubmitClaimRequest = this.submitForm.value;
+    
     this.claimService.submitClaim(data).subscribe({
       next: (claim) => {
         this.submitForm.reset();
         this.loadClaims();
+        this.error = ''; // Clear any previous errors
       },
       error: (err) => {
-        this.error = err.error?.message || 'Failed to submit claim.';
+        console.error('Claim submission error:', err);
+        this.error = err.error?.message || err.message || 'Failed to submit claim. Please try again.';
       }
     });
   }
